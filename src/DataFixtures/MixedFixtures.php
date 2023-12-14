@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Company;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -31,6 +32,7 @@ class MixedFixtures extends Fixture
 
         // Crée des utilisateurs avec des données fictives
         $users = $this->createUsers($manager);
+        $companies = $this->createCompany($manager);
 
       
 
@@ -42,7 +44,7 @@ class MixedFixtures extends Fixture
     {
         $users = [];
         $faker = Faker\Factory::create('fr_FR');
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 1; $i++) {
             $user = new User();
             $domain =  ["Agro", "Batiment", "Info"];
             $user->setEmail($faker->email);
@@ -59,6 +61,29 @@ class MixedFixtures extends Fixture
         }
 
         return $users;
+    }
+
+    private function createCompany(ObjectManager $manager)
+    {
+        $companies = [];
+        $faker = Faker\Factory::create('fr_FR');
+        for ($i = 1; $i <= 180; $i++) {
+            $company = new Company();
+            //$domain =  ["Agro", "Batiment", "Info"];
+            $company->setName($faker->company());
+            $company->setAddress($faker->address());
+            $company->setCity($faker->city());
+            $company->setCountry($faker->country());
+            $company->setWebsite($faker->domainName());
+
+
+            
+
+            $manager->persist($company);
+            $companies[] = $company;
+        }
+
+        return $companies;
     }
 
    

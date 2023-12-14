@@ -1,6 +1,10 @@
 // Appelle initSelect2 lorsque le document est prêt
 $(document).ready(function () {
+  
     initSelect2SearchUser();
+  
+    
+
 });
 
 // Fonction pour initialiser Select2 sur le champ de recherche d'utilisateur
