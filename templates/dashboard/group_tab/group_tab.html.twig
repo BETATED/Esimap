@@ -1,0 +1,32 @@
+{# group_tab.html.twig #}
+<div class="tab-pane fade" id="group-tab">
+    <h2>{{ title }}</h2>
+
+    {# Button to open the modal for adding a new group #}
+    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#viewGroupModal" onclick="initGroupModal('add')">
+        Ajouter un groupe
+    </button>
+
+{% include 'dashboard/group_tab/group_modal.html.twig' with {'title': 'Modal', 'content': 'This is the main content of your dashboard.'} %}
+
+{# Tableau pour afficher les groupes #}
+<table class="table" id="groups-table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Num</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {# Les données des groupes seront insérées ici #}
+    </tbody>
+</table>
+
+{# Bouton d'actualisation manuelle #}
+<button type="button" class="btn btn-primary" onclick="updateGroupsTable()">Actualiser</button>
+
+</div>
+
+
+    

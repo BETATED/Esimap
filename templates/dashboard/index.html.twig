@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <!-- Sidebar -->
+            <div class="list-group">
+                <a href="#dashboard-tab" class="list-group-item list-group-item-action active" data-toggle="tab">Dashboard</a>
+                <a href="#group-tab" class="list-group-item list-group-item-action" data-toggle="tab">Groupes</a>
+                <a href="#users-tab" class="list-group-item list-group-item-action" data-toggle="tab">Users</a>
+                <a href="#courses-tab" class="list-group-item list-group-item-action" data-toggle="tab">Courses</a>
+                <a href="#attendance-tab" class="list-group-item list-group-item-action" data-toggle="tab">Attendance</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <!-- Tab content -->
+            <div class="tab-content">
+                {% include 'dashboard/dashboard_tab.html.twig' with {'title': 'Dashboard', 'content': 'This is the main content of your dashboard.'} %}
+                {% include 'dashboard/group_tab/group_tab.html.twig' with {'title': 'Groupes', 'content': 'Groupe Tab'} %}
+                {% include 'dashboard/users_tab.html.twig' with {'title': 'Users', 'content': 'This is the Users tab content.'} %}
+                {% include 'dashboard/courses_tab.html.twig' with {'title': 'Courses', 'content': 'This is the Courses tab content.'} %}
+                {% include 'dashboard/attendance_tab.html.twig' with {'title': 'Attendance', 'content': 'This is the Attendance tab content.'} %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+<script src="{{ asset('js/dashboard/group.js') }}"></script>
+<script src="{{ asset('js/dashboard/initmodal.js') }}"></script>
+{% endblock %}

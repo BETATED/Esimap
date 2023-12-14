@@ -1,0 +1,108 @@
+{# group_modal.html.twig #}
+
+{# Add Group Modal #}
+<div class="modal fade" id="addGroupModal" tabindex="-1" aria-labelledby="addGroupModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addGroupModalLabel">Ajouter un groupe</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {# Partie 1 : Champs Type et Num #}
+                <form>
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Type</label>
+                        <input type="text" class="form-control" id="type">
+                    </div>
+                    <div class="mb-3">
+                        <label for="num" class="form-label">Num</label>
+                        <input type="text" class="form-control" id="num">
+                    </div>
+                </form>
+
+                {# Partie 2 : Champ de recherche d'utilisateur #}
+                <form>
+                    <div class="mb-3">
+                       
+                            <label for="searchUser" class="form-label " style="width: 100%" >Rechercher un utilisateur 
+                            <select class=" js-states form-control searchUserSelector" id="searchUser" multiple="multiple" style="width: 100%" >
+                                
+                           </select>
+                           </label>
+                        
+                        </div>
+                    {# ... Autres champs et boutons nécessaires pour la recherche d'utilisateur #}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" onclick="addGroup()">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#END Add Group Modal #}
+
+
+{# View & edit Group MODAL #}
+<div class="modal fade" id="viewGroupModal" tabindex="-1" role="dialog" aria-labelledby="viewGroupModalLabel" aria-hidden="true">
+    <input type="hidden" id="ModalSingleGroupId"/>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="viewGroupModalLabel">Informations du Groupe</h5>
+                <div class="ml-auto"><button id="btnModifySingleGroup"  type="button" class="btn btn-warning "  onclick="editGroup()" aria-label="modify" >Modifier</button></div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Ajout de l'indicateur de chargement -->
+                <div id="loadingIndicatorSingleGroup" class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Chargement...</span>
+                    </div>
+                    <p>Chargement en cours...</p>
+                </div>
+
+                <!-- Affichage des informations du groupe (sera visible après le chargement) -->
+                <div id="groupSingleDetails" style="display: none;">
+                    <label  for="modalGroupType"  ><strong>Type:</strong></label> <input type="text" class="form-control" id="modalGroupType" disabled></input>
+                    </br>
+                    <label  for="viewGroupNum"  ><strong>Num:</strong></label> <input type="text" class="form-control" id="modalGroupNum" disabled ></input>
+                    
+                    <br/>
+                    <p><strong>Membres:</strong></p>
+                    <!-- Champ de recherche avec Select -->
+                    <div id="addUserToSingleGroup" style="display: none;">
+                        <label for="searchUser2" style="width: 100%">Rechercher un utilisateur :
+                        <select class="js-states form-control searchUserSelector"  id="searchUser2" name="searchUser2" multiple="false" style="width: 100%">
+                            <!-- Options seront ajoutées dynamiquement ici -->
+                        </select>
+                        </label>
+                        <button class ="btn btn-success" >Ajouter</button>
+                    </div>
+                    <table class="table" id="groupe-table-by-id">
+                        <thead>
+                            <tr>
+                                <th>Utilisateur</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="viewGroupMembersTable">
+                            <!-- Le contenu du tableau sera ajouté ici dynamiquement -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary" id="editGroupBtn">Modifier</button>
+            </div>
+        </div>
+    </div>
+</div>
+{# END View Group MODAL #}
